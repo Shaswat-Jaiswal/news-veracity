@@ -1,0 +1,17 @@
+.toggle-wrapper {
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.toggle-icon {
+  font-size: 40px;
+  transition: 0.3s ease;
+}
+
+.toggle-icon.off {
+  color: lightgray;  /* OFF */
+}
+
+.toggle-icon.on {
+  color: black;   /* ON */
+}
