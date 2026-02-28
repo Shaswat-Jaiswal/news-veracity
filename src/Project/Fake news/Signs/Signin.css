@@ -1,0 +1,125 @@
+
+.signin-page * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Full page background */
+.signin-page {
+  background: radial-gradient(circle at 60% 50%, #ff82e6, #2b0030);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+
+.signin-container {
+  width: 900px;
+  height: 600px;
+ background: rgba(255, 255, 255, 0.15);
+backdrop-filter: blur(12px);
+border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 10px 10px;
+  border-radius: 10px;
+  margin-top: 40px;
+}
+
+/* Title */
+.signin-container .title {
+  font-size: 22px;
+  font-weight: bold;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.signin-container .title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  background: yellow;
+}
+
+
+.signin-container form .user-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 40px;
+  column-gap: 40px;
+  margin-top: 20px;
+}
+
+/* Input box wrapper */
+.signin-container .input-box {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label */
+.signin-container .input-box .details {
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-size: 16px;
+}
+
+/* Input field */
+.signin-container .input-box input {
+  height: 45px;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding-left: 15px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+
+.signin-container .input-box input:focus {
+  border-color: #9b59b6;
+}
+
+
+.signin-container .button {
+  height: 45px;
+  margin-top: 50px;
+}
+
+/* Button */
+.signin-container .button input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+ background: rgba(255, 255, 255, 0.35);
+backdrop-filter: blur(8px);
+color: #2b0030;
+border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.send-otp-btn {
+  margin-top: 1px;
+  width: 100px;
+  padding: 5px;
+  background-color: #958b92;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.send-otp-btn:hover {
+  background-color: #f1d9e8;
+}
+
