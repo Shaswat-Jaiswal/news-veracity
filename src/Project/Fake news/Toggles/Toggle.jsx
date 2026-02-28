@@ -3,15 +3,15 @@ import { MdToggleOff, MdToggleOn } from "react-icons/md";
 import "./Toggle.css";
 
 export const Toggle = ({ isDark, setIsDark }) => {
-    const [isOn, setIsOn] = useState(false);
-
     return (
-        <div className="toggle-wrapper" onClick={() => setIsOn(!isOn)}>
-            {isOn ? (
+        <div className="toggle-wrapper" 
+        onClick={() => setIsDark(!isDark)}
+        >
+            {isDark ? (
                 <MdToggleOn className="toggle-icon on" />
-      ) : (
-        <MdToggleOff className="toggle-icon off" />
-      )}
+            ) : (
+                <MdToggleOff className="toggle-icon off" />
+            )}
         </div>
-    ) 
-}
+    );
+};

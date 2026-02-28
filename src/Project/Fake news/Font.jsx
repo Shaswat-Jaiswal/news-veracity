@@ -1,25 +1,40 @@
 import { useState } from "react";
 import "./Font.css";
-import { Hamburger } from "./Hams/Hamsburger";
+import { Hamburger } from "./Hams/Hamsburger.jsx";
 import { MdArticle } from "react-icons/md";
 import { LuLoader } from "react-icons/lu";
-import { Navbar }  from "./Navbar/Navbar";
+import { Navbar }  from "./Navbar/Navbar.jsx";
+import api from "./api/axios";
 
-export const Font = ({ setPage }) => {
+
+export const Font = ({ setPage, isDark, setIsDark }) => {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState("");
   
+const handleAnalyze = async () => {
+  if (!input.trim()) {
+    alert("Please enter news text");
+    return;
+  }
 
-  const handleAnalyze = () => {
-    setLoading(true);
+  setLoading(true);
+  setResult("");
 
-    setTimeout(() => {
-      setLoading(false);
-      setResult("This is your analyzed output based on the news.");
-    }, 2000);
-  };
+  try {
+    const { data } = await api.post("/news/analyze", {
+      text: input,
+    });
 
+    setResult(data.result);
+  } catch (error) {
+  setResult(error.response?.data?.message || "Server error");
+} finally {
+    setLoading(false);
+  }
+};
+
+  
   const wordCount = input.trim() === "" ? 0 : input.trim().split(/\s+/).length;
   const readTime = Math.ceil(wordCount / 200);
 
@@ -27,7 +42,7 @@ export const Font = ({ setPage }) => {
     <div className="container-1">
       <div className="top-bar">
       <div className="ham-box">
-          <Hamburger setPage={setPage} />
+          <Hamburger setPage={setPage} isDark={isDark} setIsDark={setIsDark} />
           </div>
 
           <div className="navbar-box">

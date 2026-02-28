@@ -1,0 +1,104 @@
+.Login-page{
+    background: linear-gradient(to right, #3bb6c9, #59047d);
+    display: flex;
+    justify-content: center;
+}
+
+.Login-page .container-1{
+    background-color: azure;
+    width: 400px;
+    height: 100vh;
+    margin-top: 2px;
+    border-radius: 8px;
+}
+.Login-page .a1{
+    margin-top: 50px;
+}
+.Login-page form{
+    padding: 0 5px;   
+    
+}
+.Login-page .input-box{
+    display: flex;
+  align-items: center;
+    border-bottom: 2px solid brown;
+    padding: 8px 0;
+    font-size: 10px;
+}
+.Login-page label{
+ font-size: 12px;
+ font-weight: 550;
+}
+.Login-page .input-box input {
+  border: none;          /* 👈 box hata diya */
+  outline: none;         /* 👈 focus outline hata diya */
+  background: transparent; /* 👈 white bg hata diya */
+  flex: 1;
+  margin-left: 10px;
+  font-size: 12px;
+}
+.Login-page .forgot{
+    text-align: right;
+    margin-top: 7px;
+    font-size: 11px;
+    color: red;
+    cursor: pointer;
+}
+
+.Login-page .button {
+  height: 45px;
+}
+.Login-page .button input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+ background: linear-gradient(to right, #2563eb, #1e40af);
+backdrop-filter: blur(8px);
+color: #ffff;
+border: 1px solid rgba(255, 255, 255, 0.45);
+}
+.Login-page .b1{
+text-align: center;
+  margin: 20px 0 10px;
+  font-size: 13px;
+  color: #444;
+}
+.social-login {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+.social {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+.facebook { background: #1877f2; }
+.twitter { background: #1da1f2; }
+.google { background: #ea4335; }
+
+.social:hover {
+  transform: scale(1.1);
+  transition: 0.2s;
+}
+
+.c1{
+    margin-top: 130px;
+    text-align: center;
+  font-size: 13px;
+  color: #444;
+}
+.d1{
+    font-size: 10px;
+    color: red;
+}

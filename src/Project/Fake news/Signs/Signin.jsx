@@ -1,92 +1,92 @@
-import { InputField } from "./InputField";
+import { InputField } from "./InputField.jsx";
 import { useState } from "react";
 import "./Signin.css";
+import api from "../api/axios.js";
+import { PAGES } from "../../../constants/pages";
 
 
-export const Signin = () => {
- const [formData, setFormData] = useState({
+export const Signin = ({ setPage }) => {
+  const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     MobileNo: "",
-    Otp: "",
     Password: "",
-    Confirm: ""
- });
-
-  const fields = [
-    { label: "First Name", name: "firstName", placeholder: "Enter your first name" },
-    { label: "Last Name", name: "lastName", placeholder: "Enter your last name" },
-    { label: "Email", name: "email", placeholder: "Enter your email", type: "email" },
-    { label: "Mobile No", name: "MobileNo", placeholder: "Enter your mobile number" },
-    { label: "Otp", name: "Otp", placeholder: "Enter your otp" },
-    { label: "Password", name: "Password", placeholder: "Enter your password", type: "password" },
-    { label: "Confirm Password", name: "ConfirmPassword", placeholder: "Confirm your password", type: "password" }
-  ];
+    ConfirmPassword: "",
+  });
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
-  };
 
-  const handleSendOtp = () => {
-    if(formData.MobileNo){
-        console.log(`Sending ${formData.MobileNo}`)
-    } else{
-        alert("Please enter mobile number first");
+    if (formData.Password !== formData.ConfirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+
+    try {
+      const { data } = await api.post("/auth/signup", {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        mobile: formData.MobileNo,
+        password: formData.Password,
+      });
+
+      alert(data.message);
+      setPage(PAGES.LOGIN);
+
+
+    } catch (error) {
+      alert(
+        error.response?.data?.message || "Signup failed"
+      );
     }
   };
 
+  const fields = [
+    { label: "First Name", name: "firstName" },
+    { label: "Last Name", name: "lastName" },
+    { label: "Email", name: "email", type: "email" },
+    { label: "Mobile No", name: "MobileNo" },
+    { label: "Password", name: "Password", type: "password" },
+    { label: "Confirm Password", name: "ConfirmPassword", type: "password" },
+  ];
+
   return (
     <div className="signin-page">
-
       <div className="signin-container">
         <div className="title">Registration Form</div>
 
         <form onSubmit={handleSubmit}>
-
           <div className="user-details">
-
-           {fields.map((field) => (
+            {fields.map((field) => (
               <div className="input-box" key={field.name}>
                 <span className="details">{field.label}</span>
-
                 <InputField
                   data={{
                     ...field,
                     value: formData[field.name],
-                    onChange: handleChange
+                    onChange: handleChange,
                   }}
                 />
-
-                {field.name === "MobileNo" && (
-                    <button
-                    type="button"
-                    className="send-otp-btn"
-                    onClick={handleSendOtp}
-                  >
-                    Send OTP
-                  </button>
-                )}
-              </div> 
-            ))} 
-
+              </div>
+            ))}
           </div>
 
           <div className="button">
             <input type="submit" value="Register" />
           </div>
-
         </form>
-      </div>
 
+        <p className="login-link">
+          Already have an account?{" "}
+          <span onClick={() => setPage(PAGES.LOGIN)}>Login</span>
+        </p>
+      </div>
     </div>
   );
 };

@@ -14,3 +14,28 @@
   transition: 0.3s;
 }
 
+.settings {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 35px;
+  left: 0;
+  background: white;
+  color: black;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  width: 250px;
+  height: 200px;
+}
+
+.dropdown p {
+  padding: 10px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.dropdown p:hover {
+  background: #f0f0f0;
+}

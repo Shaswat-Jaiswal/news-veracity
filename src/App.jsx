@@ -1,36 +1,24 @@
-//import { Game } from "./Example/Game";
-//import { Pokemon } from "./Project/poke/Pokemon";
-{/*import { useState } from "react";
-import { Notes } from "./Project/Note/Notes";
-import { Signin } from "./Project/Note/Ham/Sign/Signin";
-
-export const App = () => {
-  const [page, setPage] = useState("notes");
-  return (
-    <>
-      {page === "notes" && (
-        <section className="container">
-          <Notes setPage={setPage} />
-        </section>
-      )}
-
-      {page === "signin" && <Signin />} 
-    </>
-  );
-}; */}
-
 import React, { useState } from "react";
-
-import { Font } from "./Project/Fake news/Font";
-import { Signin } from "./Project/Fake news/Signs/Signin";
+import { Font } from "./Project/Fake news/Font.jsx";
+import { Signin } from "./Project/Fake news/Signs/Signin.jsx";
+import { Login } from "./Project/Fake news/Log in/Login.jsx";
+import { PAGES } from "./constants/pages";
+import { Password } from "./Project/Fake news/Password/Password.jsx";
+import { ResetPassword } from "./Project/Fake news/Password/ResetPassword.jsx";
 
 export const App = () => {
-  const [page, setPage] = useState("font");
-  return (
-    <>
-      {page === "font" && <Font setPage={setPage} />}
+  const [page, setPage] = useState(PAGES.LOGIN);
+  const [resetToken, setResetToken] = useState("");
+  const [isDark, setIsDark] = useState(false);
 
-      {page === "signin" && <Signin />}
-    </>
+  return (
+    <div className={isDark ? "dark" : "light"}>
+      {page === PAGES.LOGIN && <Login setPage={setPage} />}
+      {page === PAGES.SIGNUP && <Signin setPage={setPage} />}
+      {page === PAGES.HOME && <Font setPage={setPage} isDark={isDark} setIsDark={setIsDark} />}
+      {page === PAGES.FORGOT_PASSWORD && <Password setPage={setPage} setResetToken={setResetToken} />}
+      {page === PAGES.RESET_PASSWORD && <ResetPassword setPage={setPage} resetToken={resetToken} />}
+    </div>
   );
-}; 
+};
+

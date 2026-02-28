@@ -67,3 +67,13 @@ button:focus-visible {
   }
 }
 */}
+
+.light {
+  background-color: white;
+  color: black;
+}
+
+.dark {
+  background-color: #242424;
+  color: white;
+} 

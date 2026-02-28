@@ -1,10 +1,20 @@
 import { useState } from "react";
 import "./Hamburger.css";
-import { Toggle } from "../Toggles/Toggle";
+import { Toggle } from "../Toggles/Toggle.jsx";
+import { PAGES } from "../../../constants/pages";
 
 
-export const Hamburger = ({ setPage }) => {
+export const Hamburger = ({ setPage, isDark, setIsDark }) => {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("isLoggedIn");
+  
+    setPage(PAGES.LOGIN);
+    
+    setMenuOpen(false);
+  };
 
   return (
     <div className="A">
@@ -25,21 +35,19 @@ export const Hamburger = ({ setPage }) => {
             <p
               className="login-btn"
               onClick={() => {
-                setPage("signin"); // App.jsx will render Signin page
+                setPage(PAGES.LOGIN); // App.jsx will render Signin page
                 setMenuOpen(false); // close menu
               }}
             >
               Sign in / Login
             </p>
           </div>
-
           
+          <p className="log" onClick={handleLogout}>
+            Logout
+            </p>
 
-          {/* Other menu items */}
-          <p className="menu-item">Notes</p>
-          <p className="menu-item">Ideas</p>
-
-          <Toggle />
+          <Toggle isDark={isDark} setIsDark={setIsDark} />
 
         </div>
       )}
